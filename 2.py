@@ -5,13 +5,14 @@ import csv
 
 with open('students.csv', encoding='utf8') as file:
     reader = list(csv.DictReader(file, delimiter=',', quotechar='"'))
-    for i in range(len(reader)):
-        j = i - 1
-        key = reader[i]
-        while float(reader[j]['score'] if reader[j]['score'] != 'None' else 0) < float(key['score'] if key['score'] != 'None' else 0) and j >= 0:
-            reader[j+1] = reader[j]
-            j -= 1
-        reader[j + 1] = key
+    for i in range(1, len(reader)):
+        for j in range(i, 0, -1):
+            if float(reader[j]['score'] if reader[j]['score'] != 'None' else 0) < float(reader[j-1]['score'] if reader[j-1]['score'] !='None' else 0):
+                reader[j], reader[j-1] = reader[j-1], reader[j]
+            else:
+                break
+reader = reader[::-1]
+print(reader)
 
 print('10 класс')
 count = 1
