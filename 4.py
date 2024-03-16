@@ -28,7 +28,7 @@ with open('students.csv', encoding='utf-8') as file:
         row['password'] = create_password()
         students_with_password.append(row)
 
-with open('students_new.csv', 'w', newline='', encoding='utf8') as file:
+with open('students_password.csv', 'w', newline='', encoding='utf8') as file:
     w = csv.DictWriter(file, fieldnames=['id', 'Name', 'titleProject_id', 'class', 'score', 'login', 'password'])
     w.writeheader()
     w.writerows(students_with_password)
